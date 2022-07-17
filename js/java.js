@@ -1,40 +1,60 @@
 'use strict';
 
-function food(FoodID,Name,Type,Price){
-    this.FoodID=FoodID;
-    this.Name=Name;
-    this.Type=Type;
-    this.Price=Price;
+const formEL= document.getElementById("formID");
+const perentEL = document.getElementById("foodtable");
+
+let foodID=0;
+
+function Food(name,type,price){
+    this.id= foodID++;
+    this.name = name;
+    this.type = type;
+    this.price = price;
 
 
 }
+formEL.addEventListener("submit", handelSubmit);
 
-food.prototype.printfood=function(){
-
-    const n1= document.createElement("p");
-    n1.textContent=`<p>${this.foodName}:${this.price} $$</p>`;
+function handelSubmit(event){
+  event.preventDefault();
+  
+let name = event.target.foodName;
+let type = event.target.foodType;
+let price = event.target.foodPrice;
+let food = new Food(name,type,price);
+food.render();
+console.log(food);
 
 }
 
-const form = document.getElementById("formID");
+Food.prototype.render=function(){
+
+    let trEL= document.createElement("tr");
+    trEL.innerHTML=`
+    <td>${this.id}</td>
+    <td>${this.name}</td>
+    <td>${this.type}</td>
+    <td>${this.price}</td>
+    `;
+
+    perentEL.appendChild(trEL);
+
+    
+
+};
+
+
  
-form.addEventListener('submit', handelsubmit);
-
-function handelsubmit(event){
-event.preventdefault();
-
-
-let foodName= event.target.foodName.value;
-let foods= event.target.foods.value;
-let price= event.target.price.value;
 
 
 
 
 
-const newfood=new food("1",foodName,foods,price);
-newfood.printfood();
 
 
-}
+
+
+
+
+
 
