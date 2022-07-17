@@ -23,9 +23,25 @@ let type = event.target.foodType;
 let price = event.target.foodPrice;
 let food = new Food(name,type,price);
 food.render();
-console.log(food);
+savedata();
+
+
 
 }
+function savedata(){
+  let strifyedData =JSON.stringify(Food);
+  localStorage.setItem("food",strifyedData);
+
+}
+savedata();
+
+function getdata(){
+
+
+  let retrivedData= localStorage.getItem("foods");
+  let parsedData=JSON.parse(retrivedData);
+}
+getdata();
 
 Food.prototype.render=function(){
 
@@ -37,7 +53,7 @@ Food.prototype.render=function(){
     <td>${this.price}</td>
     `;
 
-    perentEL.appendChild(trEL);
+     perentEL.appendChild(trEL);
 
     
 
