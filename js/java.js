@@ -18,9 +18,9 @@ formEL.addEventListener("submit", handelSubmit);
 function handelSubmit(event){
   event.preventDefault();
   
-let name = event.target.foodName;
-let type = event.target.foodType;
-let price = event.target.foodPrice;
+let name = event.target.foodName.value;
+let type = event.target.foods.value;
+let price = event.target.price.value;
 let food = new Food(name,type,price);
 food.render();
 savedata();
